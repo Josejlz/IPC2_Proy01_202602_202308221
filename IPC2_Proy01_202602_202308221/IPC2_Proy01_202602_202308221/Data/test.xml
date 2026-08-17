@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuracion>
+	<listaCiudades>
+		<ciudad>
+			<!-- Se define el nombre de la ciudad y su tamaño en filas y columnas -->
+			<nombre filas="5" columnas="5">CiudadPrueba</nombre>
+
+			<!-- Las filas contienen exactamente 5 caracteres delimitados por comillas -->
+			<fila numero="1">"E    "</fila>
+			<fila numero="2">"* * *"</fila>
+			<fila numero="3">"  * C"</fila>
+			<fila numero="4">"*   *"</fila>
+			<fila numero="5">"**R *"</fila>
+
+			<!-- Se define una unidad militar en una coordenada específica con su capacidad de combate -->
+			<unidadMilitar fila="3"	 columna="2">25</unidadMilitar>
+		</ciudad>
+	</listaCiudades>
+	<robots>
+		<robot>
+			<!-- Robot tipo rescate -->
+			<nombre tipo="ChapinRescue">WallE</nombre>
+		</robot>
+		<robot>
+			<!-- Robot tipo combate -->
+			<nombre tipo="ChapinFighter" capacidad="100">Terminator</nombre>
+		</robot>
+	</robots>
+</configuracion>
