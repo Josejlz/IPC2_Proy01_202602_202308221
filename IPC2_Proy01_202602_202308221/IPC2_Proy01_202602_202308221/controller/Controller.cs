@@ -4,28 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IPC2_Proy01_202602_202308221.model;
-using IPC2_Proy01_202602_202308221.view;
+using IPC2_Proy01_202602_202308221.Persistencia;
+using IPC2_Proy01_202602_202308221.structures;
 
 namespace IPC2_Proy01_202602_202308221.controller
 {
     public class Controller
     {
-        public  Model _model { get; set; }
-        public View _view { get; set; }
+        public Model _model;
+        private Lector _lector;
 
-        public Controller(Model model, View view)
+        public Controller(Model model)
         {
-            this._model = model;
-            this._view = view;
+            _model = model;
+            _lector = new Lector();
+            
         }
 
         public Controller()
         {
-            this._model = new Model();
-            this._view = new View();
+            _model = new Model();
+            _lector = new Lector();
         }
 
-        
+        public string getCurrentLogData()
+        {
+            return _model.innerData();
+        }
+
+        public ResultadoCarga CargarConfiguracion(string ruta)
+        {
+            return _lector.CargarConfiguracion(ruta, _model.listaCiudades, _model.listaRobots);
+        }
+
+        public Ciudad ObtenerCiudadPorNombre(string nombre)
+        {
+            return _model.listaCiudades.BuscarPorNombre(nombre);
+        }
 
     }
 }

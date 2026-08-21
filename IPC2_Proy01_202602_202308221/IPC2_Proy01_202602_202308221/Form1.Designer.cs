@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.txtLogs = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -79,12 +80,21 @@
             this.button3.Text = "Limpiar";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // txtLogs
+            // 
+            this.txtLogs.Location = new System.Drawing.Point(217, 195);
+            this.txtLogs.Name = "txtLogs";
+            this.txtLogs.Size = new System.Drawing.Size(422, 178);
+            this.txtLogs.TabIndex = 5;
+            this.txtLogs.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Plum;
             this.ClientSize = new System.Drawing.Size(833, 397);
+            this.Controls.Add(this.txtLogs);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -103,6 +113,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RichTextBox txtLogs;
     }
 }
 
