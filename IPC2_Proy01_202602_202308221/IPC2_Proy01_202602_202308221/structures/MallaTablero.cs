@@ -11,6 +11,8 @@ namespace IPC2_Proy01_202602_202308221.structures
 {
     public class MallaTablero
     {
+
+        public string nombre { get; set; }
         private ListaCabeceras cabecerasFila;
         private ListaCabeceras cabecerasColumna;
         public int TotalFilas { get; private set; }

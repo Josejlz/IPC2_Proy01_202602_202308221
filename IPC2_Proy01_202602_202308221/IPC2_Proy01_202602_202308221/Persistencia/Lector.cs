@@ -312,9 +312,20 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
             return atributo.Value.Trim();
         }
 
-        public void CargarMalla()
+        public void CargarMallas(ListaCiudad listaCiudad, ListaRobots listaRobots)
         {
-           
+            if (listaCiudad==null)
+            {
+                return;
+            }
+
+            Ciudad ciudadActual = listaCiudad.Primero.Dato;
+
+            while (ciudadActual!=null)
+            {
+
+            }
+
         }
 
     }
