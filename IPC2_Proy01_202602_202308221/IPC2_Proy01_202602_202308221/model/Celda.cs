@@ -17,7 +17,7 @@ namespace IPC2_Proy01_202602_202308221.model
             public TipoCelda Tipo { get; set; }
             public int? CapacidadMilitar { get; set; }
 
-            
+            public bool Visitada { get; set; }
 
             public bool TieneUnidadMilitar => CapacidadMilitar.HasValue;
         

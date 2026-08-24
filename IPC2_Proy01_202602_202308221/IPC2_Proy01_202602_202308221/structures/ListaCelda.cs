@@ -77,7 +77,40 @@ namespace IPC2_Proy01_202602_202308221.structures
             return false;
         }
 
+        public void EliminarUltimo()
+        {
+            if (Primero == null) return;
+
+            if (Primero.Siguiente == null)
+            {
+                Primero = null;
+                Cantidad = 0;
+                return;
+            }
+
+            CeldaNodo actual = Primero;
+            while (actual.Siguiente.Siguiente !=null)
+            {
+                actual = actual.Siguiente;
+            }
+            actual.Siguiente = null;
+            Cantidad = Cantidad - 1;
+            return;
+        }
+
+        public void ReiniciarVisitas()
+        {
+            CeldaNodo actual = Primero;
+            while (actual != null)
+            {
+                actual.Dato.Visitada = false;
+                actual = actual.Siguiente;
+            }
+        }
+
     }
+
+
 
     
 }
