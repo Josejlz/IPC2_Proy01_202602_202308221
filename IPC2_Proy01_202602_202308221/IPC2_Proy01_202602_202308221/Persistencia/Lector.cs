@@ -312,5 +312,10 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
             return atributo.Value.Trim();
         }
 
+        public void CargarMalla()
+        {
+           
+        }
+
     }
 }
