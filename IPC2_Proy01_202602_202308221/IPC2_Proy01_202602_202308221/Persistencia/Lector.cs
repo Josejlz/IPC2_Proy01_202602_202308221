@@ -325,12 +325,16 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
             while (ciudadActual!=null)
             {
                 CeldaNodo celdaActual = ciudadActual.Dato.listaCeldas.Primero;
+
+                MallaTablero mallaNueva = new MallaTablero(ciudadActual.Dato.Filas, ciudadActual.Dato.Columnas);
+
                 while (celdaActual!=null)
                 {
-                    MallaTablero mallaNueva = new MallaTablero(ciudadActual.Dato.Filas, ciudadActual.Dato.Columnas);
                     mallaNueva.Insertar(celdaActual.Dato, celdaActual.Dato.Fila, celdaActual.Dato.Columna);
                     celdaActual = celdaActual.Siguiente;
                 }
+
+                listaMallas.Insertar(mallaNueva);
 
                 ciudadActual = ciudadActual.Siguiente;
                 
