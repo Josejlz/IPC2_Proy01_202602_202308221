@@ -13,7 +13,7 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
 {
     public class Lector
     {
-        public ResultadoCarga CargarConfiguracion(string ruta, ListaCiudad listaCiudad, ListaRobots listaRobots)
+        public ResultadoCarga CargarConfiguracion(string ruta, ListaCiudad listaCiudad, ListaRobots listaRobots, ListaMallas listaMallas)
         {
             ResultadoCarga resultado = new ResultadoCarga();
             if (!System.IO.File.Exists(ruta))
@@ -31,6 +31,7 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
 
                 CargarCiudades(documento, listaCiudad, resultado);
                 CargarRobots(documento, listaRobots, resultado);
+                CargarMallas(listaCiudad, listaRobots, listaMallas);
             }
             catch (XmlException e)
             {
@@ -312,18 +313,27 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
             return atributo.Value.Trim();
         }
 
-        public void CargarMallas(ListaCiudad listaCiudad, ListaRobots listaRobots)
+        public void CargarMallas(ListaCiudad listaCiudad, ListaRobots listaRobots, ListaMallas listaMallas)
         {
             if (listaCiudad==null)
             {
                 return;
             }
 
-            Ciudad ciudadActual = listaCiudad.Primero.Dato;
+           CiudadNodo ciudadActual = listaCiudad.Primero;
 
             while (ciudadActual!=null)
             {
+                CeldaNodo celdaActual = ciudadActual.Dato.listaCeldas.Primero;
+                while (celdaActual!=null)
+                {
+                    MallaTablero mallaNueva = new MallaTablero(ciudadActual.Dato.Filas, ciudadActual.Dato.Columnas);
+                    mallaNueva.Insertar(celdaActual.Dato, celdaActual.Dato.Fila, celdaActual.Dato.Columna);
+                    celdaActual = celdaActual.Siguiente;
+                }
 
+                ciudadActual = ciudadActual.Siguiente;
+                
             }
 
         }

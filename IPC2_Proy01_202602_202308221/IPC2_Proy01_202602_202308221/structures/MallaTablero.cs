@@ -121,6 +121,21 @@ namespace IPC2_Proy01_202602_202308221.structures
             return true;
         }
 
+        public NodoCeldaMalla ObtenerPrimeroDeFila(int fila)
+        {
+            NodoCabecera cabecera = cabecerasFila.BuscarPorIndice(fila);
+
+            if (cabecera==null)
+            {
+                return null;
+            }
+
+            return cabecera.Acceso;
+
+        }
+
+        
+
         
 
     }

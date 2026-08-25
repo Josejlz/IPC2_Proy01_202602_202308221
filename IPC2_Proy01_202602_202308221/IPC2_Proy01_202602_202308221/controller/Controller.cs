@@ -34,7 +34,7 @@ namespace IPC2_Proy01_202602_202308221.controller
 
         public ResultadoCarga CargarConfiguracion(string ruta)
         {
-            return _lector.CargarConfiguracion(ruta, _model.listaCiudades, _model.listaRobots);
+            return _lector.CargarConfiguracion(ruta, _model.listaCiudades, _model.listaRobots, _model.listaMallas);
         }
 
         public Ciudad ObtenerCiudadPorNombre(string nombre)

@@ -16,10 +16,13 @@ namespace IPC2_Proy01_202602_202308221.model
         public MallaTablero mallaTablero { get; private set; };
         public ListaRobots listaRobots { get; private set; }
 
+        public ListaMallas listaMallas { get; private set; }
+
         public Model()
         {
             listaCiudades = new ListaCiudad();
             listaRobots = new ListaRobots();
+            listaMallas = new ListaMallas();
         }
 
         public string innerData()
