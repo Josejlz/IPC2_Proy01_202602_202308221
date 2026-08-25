@@ -114,5 +114,20 @@ namespace IPC2_Proy01_202602_202308221.model
 
             return contents;
         }
+
+        public string innerData(bool sobrecarga)
+        {
+            string contents="";
+
+            MallaNodo actual = listaMallas.Primero;
+
+            while (actual != null)
+                {
+
+                actual = actual.Siguiente;
+                }
+
+            return contents;
+        }
     }
 }
