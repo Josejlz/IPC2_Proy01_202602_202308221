@@ -37,16 +37,16 @@ namespace IPC2_Proy01_202602_202308221.structures
                 }
                 actual.Siguiente = nuevo;
             }
-            Cantidad = Cantidad - 1;
+            Cantidad = Cantidad + 1;
         }
 
         public MallaTablero BuscarPorIndice(int index)
         {
             MallaNodo actual = Primero;
             int contador = 0;
-            while ((actual != null)&&(contador==index))
+            while (actual != null)
             {
-                if (contador==index)
+                if (contador == index)
                 {
                     return actual.Dato;
                 }
@@ -54,6 +54,26 @@ namespace IPC2_Proy01_202602_202308221.structures
                 contador += 1;
             }
             return null;
+        }
+
+        public MallaTablero BuscarPorNombre(string nombre)
+        {
+            MallaNodo actual = Primero;
+            while (actual != null)
+            {
+                if (string.Equals(actual.Dato.nombre, nombre, StringComparison.OrdinalIgnoreCase))
+                {
+                    return actual.Dato;
+                }
+                actual = actual.Siguiente;
+            }
+            return null;
+        }
+
+        public void Vaciar()
+        {
+            Primero = null;
+            Cantidad = 0;
         }
 
     }

@@ -46,28 +46,39 @@ namespace IPC2_Proy01_202602_202308221.structures
 
         public bool Insertar(Celda dato, int fila, int column)
         {
-
             NodoCabecera cabeceraFila = cabecerasFila.BuscarPorIndice(fila);
             NodoCabecera cabeceraColumna = cabecerasColumna.BuscarPorIndice(column);
 
-            if (cabeceraFila==null||cabeceraColumna==null)
+            if (cabeceraFila == null || cabeceraColumna == null)
             {
                 return false;
             }
 
             NodoCeldaMalla nuevo = new NodoCeldaMalla(dato, fila, column);
 
-
-            if (cabeceraFila.Ultimo == null)
+            // enlace horizontal
+            if (cabeceraFila.Acceso == null)
             {
                 cabeceraFila.Acceso = nuevo;
-            } else {
+            }
+            else
+            {
+                nuevo.Izquierda = cabeceraFila.Ultimo;
+                cabeceraFila.Ultimo.Derecha = nuevo;
+            }
+            cabeceraFila.Ultimo = nuevo;
+
+            // enlace vertical
+            if (cabeceraColumna.Acceso == null)
+            {
+                cabeceraColumna.Acceso = nuevo;
+            }
+            else
+            {
                 nuevo.Arriba = cabeceraColumna.Ultimo;
                 cabeceraColumna.Ultimo.Abajo = nuevo;
             }
-
             cabeceraColumna.Ultimo = nuevo;
-
 
             return true;
         }

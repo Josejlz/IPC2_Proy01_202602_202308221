@@ -55,6 +55,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logica\BuscadorRuta.cs" />
+    <Compile Include="Logica\FiltroCeldas.cs" />
+    <Compile Include="Logica\GeneradorGraphviz.cs" />
+    <Compile Include="Logica\ResultadoMision.cs" />
     <Compile Include="model\Celda.cs" />
     <Compile Include="model\ChapinFighter.cs" />
     <Compile Include="model\ChapinRescue.cs" />

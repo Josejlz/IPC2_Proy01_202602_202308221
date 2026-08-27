@@ -315,10 +315,13 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
 
         public void CargarMallas(ListaCiudad listaCiudad, ListaRobots listaRobots, ListaMallas listaMallas)
         {
+
             if (listaCiudad==null)
             {
                 return;
             }
+
+            listaMallas.Vaciar();
 
            CiudadNodo ciudadActual = listaCiudad.Primero;
 
@@ -331,6 +334,7 @@ namespace IPC2_Proy01_202602_202308221.Persistencia
                 while (celdaActual!=null)
                 {
                     mallaNueva.Insertar(celdaActual.Dato, celdaActual.Dato.Fila, celdaActual.Dato.Columna);
+                    mallaNueva.nombre = ciudadActual.Dato.Nombre;
                     celdaActual = celdaActual.Siguiente;
                 }
 

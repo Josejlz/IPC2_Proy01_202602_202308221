@@ -108,6 +108,25 @@ namespace IPC2_Proy01_202602_202308221.structures
             }
         }
 
+        public Celda ObtenerPorIndice(int indice)
+        {
+            if (indice < 0 || indice >= Cantidad)
+            {
+                return null;
+            }
+
+            CeldaNodo actual = Primero;
+            int contador = 0;
+
+            while (contador < indice)
+            {
+                actual = actual.Siguiente;
+                contador = contador + 1;
+            }
+
+            return actual.Dato;
+        }
+
     }
 
 

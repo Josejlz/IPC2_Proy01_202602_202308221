@@ -13,7 +13,7 @@ namespace IPC2_Proy01_202602_202308221.model
     {
         public ListaCiudad listaCiudades {  get; private set; }
 
-        public MallaTablero mallaTablero { get; private set; };
+        public MallaTablero mallaTablero { get; private set; }
         public ListaRobots listaRobots { get; private set; }
 
         public ListaMallas listaMallas { get; private set; }
@@ -117,16 +117,60 @@ namespace IPC2_Proy01_202602_202308221.model
 
         public string innerData(bool sobrecarga)
         {
-            string contents="";
+            string contents = "";
 
-            MallaNodo actual = listaMallas.Primero;
+            if (listaMallas.Primero != null)
+            {
+                MallaNodo actual = listaMallas.Primero;
+                int contador = 1;
 
-            while (actual != null)
+                contents = "Lista de Mallas: \n";
+
+                while (actual != null)
                 {
+                    MallaTablero mallaActual = actual.Dato;
 
-                actual = actual.Siguiente;
+                    contents = contents + "\n\nMalla " + contador + ": " + mallaActual.nombre + "\n\n";
+
+                    for (int i = 1; i <= mallaActual.TotalFilas; i++)
+                    {
+                        for (int j = 1; j <= mallaActual.TotalColumnas; j++)
+                        {
+                            Celda celdaActual = mallaActual.obtenerCelda(i, j);
+
+                            if (celdaActual != null)
+                            {
+                                switch (celdaActual.Tipo)
+                                {
+                                    case TipoCelda.Intransitable:
+                                        contents = contents + "*";
+                                        break;
+                                    case TipoCelda.Camino:
+                                        contents = contents + " ";
+                                        break;
+                                    case TipoCelda.Recurso:
+                                        contents = contents + "R";
+                                        break;
+                                    case TipoCelda.UnidadCivil:
+                                        contents = contents + "C";
+                                        break;
+                                    case TipoCelda.PuntoEntrada:
+                                        contents = contents + "E";
+                                        break;
+                                    default:
+                                        contents = contents + "x";
+                                        break;
+                                }
+                            }
+                        }
+                        contents = contents + "\n";
+                    }
+
+                    contador += 1;
+                    actual = actual.Siguiente;
                 }
-
+            }
+            
             return contents;
         }
     }

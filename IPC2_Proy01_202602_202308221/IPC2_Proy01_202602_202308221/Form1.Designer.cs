@@ -33,6 +33,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.txtLogs = new System.Windows.Forms.RichTextBox();
+            this.cmbTipoMision = new System.Windows.Forms.ComboBox();
+            this.cmbCiudades = new System.Windows.Forms.ComboBox();
+            this.cmbRobots = new System.Windows.Forms.ComboBox();
+            this.cmbObjetivo = new System.Windows.Forms.ComboBox();
+            this.picResultado = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picResultado)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +74,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Comenzar Operación";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -79,21 +86,74 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Limpiar";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtLogs
             // 
-            this.txtLogs.Location = new System.Drawing.Point(217, 195);
+            this.txtLogs.Location = new System.Drawing.Point(62, 271);
             this.txtLogs.Name = "txtLogs";
-            this.txtLogs.Size = new System.Drawing.Size(422, 178);
+            this.txtLogs.Size = new System.Drawing.Size(287, 164);
             this.txtLogs.TabIndex = 5;
             this.txtLogs.Text = "";
+            // 
+            // cmbTipoMision
+            // 
+            this.cmbTipoMision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoMision.FormattingEnabled = true;
+            this.cmbTipoMision.Location = new System.Drawing.Point(51, 197);
+            this.cmbTipoMision.Name = "cmbTipoMision";
+            this.cmbTipoMision.Size = new System.Drawing.Size(228, 21);
+            this.cmbTipoMision.TabIndex = 6;
+            this.cmbTipoMision.SelectedIndexChanged += new System.EventHandler(this.cmbTipoMision_SelectedIndexChanged);
+            // 
+            // cmbCiudades
+            // 
+            this.cmbCiudades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCiudades.FormattingEnabled = true;
+            this.cmbCiudades.Location = new System.Drawing.Point(557, 197);
+            this.cmbCiudades.Name = "cmbCiudades";
+            this.cmbCiudades.Size = new System.Drawing.Size(238, 21);
+            this.cmbCiudades.TabIndex = 7;
+            this.cmbCiudades.SelectedIndexChanged += new System.EventHandler(this.cmbCiudades_SelectedIndexChanged);
+            // 
+            // cmbRobots
+            // 
+            this.cmbRobots.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRobots.FormattingEnabled = true;
+            this.cmbRobots.Location = new System.Drawing.Point(297, 197);
+            this.cmbRobots.Name = "cmbRobots";
+            this.cmbRobots.Size = new System.Drawing.Size(241, 21);
+            this.cmbRobots.TabIndex = 8;
+            // 
+            // cmbObjetivo
+            // 
+            this.cmbObjetivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbObjetivo.FormattingEnabled = true;
+            this.cmbObjetivo.Location = new System.Drawing.Point(297, 231);
+            this.cmbObjetivo.Name = "cmbObjetivo";
+            this.cmbObjetivo.Size = new System.Drawing.Size(241, 21);
+            this.cmbObjetivo.TabIndex = 9;
+            // 
+            // picResultado
+            // 
+            this.picResultado.Location = new System.Drawing.Point(444, 273);
+            this.picResultado.Name = "picResultado";
+            this.picResultado.Size = new System.Drawing.Size(339, 162);
+            this.picResultado.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picResultado.TabIndex = 10;
+            this.picResultado.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Plum;
-            this.ClientSize = new System.Drawing.Size(833, 397);
+            this.ClientSize = new System.Drawing.Size(833, 465);
+            this.Controls.Add(this.picResultado);
+            this.Controls.Add(this.cmbObjetivo);
+            this.Controls.Add(this.cmbRobots);
+            this.Controls.Add(this.cmbCiudades);
+            this.Controls.Add(this.cmbTipoMision);
             this.Controls.Add(this.txtLogs);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -102,6 +162,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picResultado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,6 +175,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox txtLogs;
+        private System.Windows.Forms.ComboBox cmbTipoMision;
+        private System.Windows.Forms.ComboBox cmbCiudades;
+        private System.Windows.Forms.ComboBox cmbRobots;
+        private System.Windows.Forms.ComboBox cmbObjetivo;
+        private System.Windows.Forms.PictureBox picResultado;
     }
 }
-
