@@ -253,7 +253,11 @@ namespace IPC2_Proy01_202602_202308221
                 {
                     picResultado.Image.Dispose();
                 }
-                picResultado.Image = Image.FromFile(rutaImagen);
+
+                using (var imagenTemporal = new Bitmap(rutaImagen))
+                {
+                    picResultado.Image = new Bitmap(imagenTemporal);
+                }
             }
         }
     }

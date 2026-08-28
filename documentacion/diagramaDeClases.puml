@@ -1,0 +1,228 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam shadowing false
+
+package "model" {
+    enum TipoCelda {
+        Intransitable
+        Camino
+        PuntoEntrada
+        UnidadCivil
+        Recurso
+    }
+
+    class Celda {
+        - int Fila
+        - int Columna
+        - TipoCelda Tipo
+        - int? CapacidadMilitar
+        - bool Visitada
+        + bool TieneUnidadMilitar
+    }
+
+    abstract class Robot {
+        - string Nombre
+        + {abstract} string Tipo
+        + Robot(string nombre)
+    }
+
+    class ChapinRescue {
+        + ChapinRescue(string nombre)
+        + string Tipo
+    }
+
+    class ChapinFighter {
+        - int Capacidad
+        + ChapinFighter(string nombre, int capacidad)
+        + string Tipo
+    }
+
+    class Ciudad {
+        - string Nombre
+        - int Filas
+        - int Columnas
+        - ListaCelda listaCeldas
+    }
+
+    class Model {
+        - ListaCiudad listaCiudades
+        - MallaTablero mallaTablero
+        - ListaRobots listaRobots
+        - ListaMallas listaMallas
+        + Model()
+        + string innerData()
+        + string innerData(bool sobrecarga)
+    }
+}
+
+package "structures" {
+    class ListaCelda {
+        - CeldaNodo Primero
+        - int Cantidad
+        + ListaCelda()
+        + bool isEmpty()
+        + void Insertar(Celda celda)
+        + Celda BuscarPorFilaColumna(int fila, int col)
+        + bool BuscarOActualizar(Celda celda)
+        + void EliminarUltimo()
+        + void ReiniciarVisitas()
+        + Celda ObtenerPorIndice(int indice)
+    }
+
+    class CeldaNodo {
+        - Celda Dato
+        - CeldaNodo Siguiente
+        + CeldaNodo(Celda celda)
+    }
+
+    class ListaCiudad {
+        - CiudadNodo Primero
+        - int Cantidad
+        + ListaCiudad()
+        + bool isEmpty()
+        + void Insertar(Ciudad ciudad)
+        + Ciudad BuscarPorNombre(string nombre)
+        + bool BuscarOActualizar(Ciudad ciudad)
+        + bool EliminarPorNombre(string nombre)
+        + Ciudad ObtenerPorIndice(int indice)
+    }
+
+    class CiudadNodo {
+        - Ciudad Dato
+        - CiudadNodo Siguiente
+        + CiudadNodo(Ciudad ciudad)
+    }
+
+    class MallaTablero {
+        - string nombre
+        - ListaCabeceras cabecerasFila
+        - ListaCabeceras cabecerasColumna
+        - int TotalFilas
+        - int TotalColumnas
+        + MallaTablero(int totalFilas, int totalColumnas)
+        + bool Insertar(Celda dato, int fila, int column)
+        + NodoCeldaMalla ObtenerNodoMalla(int fila, int column)
+        + Celda obtenerCelda(int fila, int column)
+        + bool ReemplazarCelda(int fila, int columna, Celda nuevo)
+        + NodoCeldaMalla ObtenerPrimeroDeFila(int fila)
+    }
+
+    class NodoCeldaMalla {
+        - Celda Dato
+        - int Fila
+        - int Columna
+        - NodoCeldaMalla Arriba
+        - NodoCeldaMalla Abajo
+        - NodoCeldaMalla Izquierda
+        - NodoCeldaMalla Derecha
+        + NodoCeldaMalla(Celda dato, int fila, int columna)
+    }
+    
+    class ListaRobots {
+        ' Sigue el mismo patrón de lista enlazada
+    }
+    
+    class ListaMallas {
+        ' Sigue el mismo patrón de lista enlazada
+    }
+}
+
+package "controller" {
+    class Controller {
+        - Model _model
+        - Lector _lector
+        - BuscadorRuta _buscadorRuta
+        - GeneradorGraphviz _generadorGraphviz
+        + Controller()
+        + Controller(Model model)
+        + string getCurrentLogData()
+        + ResultadoCarga CargarConfiguracion(string ruta)
+        + Ciudad ObtenerCiudadPorNombre(string nombre)
+        + ListaCiudad ObtenerCiudades()
+        + ListaRobots ObtenerRobots()
+        + ListaCelda ObtenerPuntosEntrada(string nombreCiudad)
+        + ListaCelda ObtenerCiviles(string nombreCiudad)
+        + ListaCelda ObtenerRecursos(string nombreCiudad)
+        + ResultadoMision EjecutarMisionRescate(string nombreCiudad, Celda civilObjetivo, string nombreRobot, out string rutaImagen)
+        + ResultadoMision EjecutarMisionExtraccion(string nombreCiudad, Celda recursoObjetivo, string nombreRobot, out string rutaImagen)
+    }
+}
+
+package "Logica" {
+    class BuscadorRuta {
+        + ResultadoMision BuscarRutaRescate(MallaTablero malla, ListaCelda listaCeldasCiudad, Celda entrada, Celda civilObjetivo, ChapinRescue robot)
+        - bool PasoRescate(MallaTablero malla, int fila, int columna, int filaObjetivo, int columnaObjetivo, ListaCelda camino)
+        + ResultadoMision BuscarRutaExtraccion(MallaTablero malla, ListaCelda listaCeldasCiudad, Celda entrada, Celda recursoObjetivo, ChapinFighter robot)
+        - bool PasoExtraccion(MallaTablero malla, int fila, int columna, int filaObjetivo, int columnaObjetivo, ListaCelda camino, ref int capacidadActual)
+    }
+
+    class FiltroCeldas {
+        + {static} ListaCelda ObtenerPorTipo(ListaCelda listaCeldasCiudad, TipoCelda tipo)
+    }
+
+    class ResultadoMision {
+        - bool Exito
+        - string TipoMision
+        - ListaCelda Camino
+        - Celda CeldaObjetivo
+        - Robot RobotUsado
+        - int CapacidadInicial
+        - int CapacidadFinal
+        - string MensajeError
+        + ResultadoMision()
+    }
+
+    class GeneradorGraphviz {
+        - string rutaEjecutableDot
+        + string GenerarImagenMision(Ciudad ciudad, MallaTablero malla, ListaCelda camino, string tituloMision)
+        - string ConstruirDot(Ciudad ciudad, MallaTablero malla, ListaCelda camino, string tituloMision)
+        - bool EstaEnCamino(ListaCelda camino, int fila, int columna)
+        - string ColorDeCelda(Celda celda)
+    }
+}
+
+' Relaciones de Herencia
+Robot <|-- ChapinRescue
+Robot <|-- ChapinFighter
+
+' Relaciones de Composición / Agregación
+Model *-- ListaCiudad
+Model *-- MallaTablero
+Model *-- ListaRobots
+Model *-- ListaMallas
+
+Ciudad *-- ListaCelda
+
+ListaCelda o-- CeldaNodo
+CeldaNodo --> Celda
+
+ListaCiudad o-- CiudadNodo
+CiudadNodo --> Ciudad
+
+MallaTablero *-- NodoCeldaMalla
+NodoCeldaMalla --> Celda
+
+' Relaciones de Dependencia
+Controller --> Model
+Controller --> BuscadorRuta
+Controller --> GeneradorGraphviz
+
+BuscadorRuta --> ResultadoMision
+BuscadorRuta --> MallaTablero
+BuscadorRuta --> ListaCelda
+BuscadorRuta ..> ChapinRescue
+BuscadorRuta ..> ChapinFighter
+
+ResultadoMision --> ListaCelda
+ResultadoMision --> Celda
+ResultadoMision --> Robot
+
+GeneradorGraphviz ..> Ciudad
+GeneradorGraphviz ..> MallaTablero
+GeneradorGraphviz ..> ListaCelda
+
+FiltroCeldas ..> ListaCelda
+FiltroCeldas ..> TipoCelda
+
+@enduml

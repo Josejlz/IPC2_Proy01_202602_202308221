@@ -124,13 +124,13 @@ namespace IPC2_Proy01_202602_202308221.model
                 MallaNodo actual = listaMallas.Primero;
                 int contador = 1;
 
-                contents = "Lista de Mallas: \n";
+                contents = "Lista de Ciudades: \n";
 
                 while (actual != null)
                 {
                     MallaTablero mallaActual = actual.Dato;
 
-                    contents = contents + "\n\nMalla " + contador + ": " + mallaActual.nombre + "\n\n";
+                    contents = contents + "\n\Ciudad " + contador + ": " + mallaActual.nombre + "\n\n";
 
                     for (int i = 1; i <= mallaActual.TotalFilas; i++)
                     {
@@ -167,6 +167,17 @@ namespace IPC2_Proy01_202602_202308221.model
                     }
 
                     contador += 1;
+                    actual = actual.Siguiente;
+                }
+            }
+
+            if (listaRobots!=null)
+            {
+                RobotNodo actual = listaRobots.Primero;
+                contents += "Listado de Robots: \n";
+                while (actual != null)
+                {
+                    contents += (actual.Dato.Nombre+" - ("+actual.Dato.Tipo+ ") \n");
                     actual = actual.Siguiente;
                 }
             }
