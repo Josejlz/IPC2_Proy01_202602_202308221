@@ -130,7 +130,7 @@ namespace IPC2_Proy01_202602_202308221.model
                 {
                     MallaTablero mallaActual = actual.Dato;
 
-                    contents = contents + "\n\Ciudad " + contador + ": " + mallaActual.nombre + "\n\n";
+                    contents = contents + "\n\nCiudad " + contador + ": " + mallaActual.nombre + "\n\n";
 
                     for (int i = 1; i <= mallaActual.TotalFilas; i++)
                     {

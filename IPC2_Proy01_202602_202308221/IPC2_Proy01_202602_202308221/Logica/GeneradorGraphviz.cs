@@ -12,9 +12,7 @@ namespace IPC2_Proy01_202602_202308221.Logica
 {
     internal class GeneradorGraphviz
     {
-        // OJO: ajusta esta ruta a donde tengas instalado Graphviz.
-        // Si agregaste la carpeta "bin" de Graphviz a tu PATH, puedes dejar
-        // simplemente "dot" en vez de la ruta completa.
+ 
         private string rutaEjecutableDot = @"C:\Program Files\Graphviz\bin\dot.exe";
 
         public string GenerarImagenMision(Ciudad ciudad, MallaTablero malla, ListaCelda camino, string tituloMision)
@@ -60,10 +58,14 @@ namespace IPC2_Proy01_202602_202308221.Logica
                 {
                     Celda celda = malla.obtenerCelda(fila, columna);
                     string color = ColorDeCelda(celda);
-
                     if (EstaEnCamino(camino, fila, columna))
                     {
-                        color = "burlywood2";
+       
+                        if (celda.Tipo == TipoCelda.Camino)
+                        {
+                           
+                            color = "burlywood2";
+                        }
                     }
 
                     sb.Append("<TD WIDTH=\"18\" HEIGHT=\"18\" BGCOLOR=\"" + color + "\"></TD>");
@@ -106,5 +108,6 @@ namespace IPC2_Proy01_202602_202308221.Logica
                 default: return "white";
             }
         }
+
     }
 }

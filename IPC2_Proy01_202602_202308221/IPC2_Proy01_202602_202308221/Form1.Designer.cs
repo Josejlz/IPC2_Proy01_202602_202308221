@@ -105,9 +105,8 @@
             this.cmbTipoMision.Size = new System.Drawing.Size(228, 21);
             this.cmbTipoMision.TabIndex = 6;
             this.cmbTipoMision.SelectedIndexChanged += new System.EventHandler(this.cmbTipoMision_SelectedIndexChanged);
-            // 
+            
             // cmbCiudades
-            // 
             this.cmbCiudades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCiudades.FormattingEnabled = true;
             this.cmbCiudades.Location = new System.Drawing.Point(557, 197);

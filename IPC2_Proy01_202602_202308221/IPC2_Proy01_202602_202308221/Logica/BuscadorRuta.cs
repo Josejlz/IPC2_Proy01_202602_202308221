@@ -68,7 +68,7 @@ namespace IPC2_Proy01_202602_202308221.Logica
             return false;
         }
 
-        // miaion sw wextraccion
+        // mision de extraccion
         public ResultadoMision BuscarRutaExtraccion(MallaTablero malla, ListaCelda listaCeldasCiudad, Celda entrada, Celda recursoObjetivo, ChapinFighter robot)
         {
             ResultadoMision resultado = new ResultadoMision();
